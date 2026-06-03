@@ -4,8 +4,6 @@ Several vision pipeline scripts call into external model repos that are NOT bund
 
 ## pMF — one-step generators
 
-Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py) and [`visualize.py`](visualize.py).
-
 ```bash
 git clone https://github.com/Lyy0725/pMF.git pMF
 pip install -r pMF/requirements.txt
@@ -14,8 +12,6 @@ pip install -r pMF/requirements.txt
 Pretrained checkpoints are pulled automatically from `huggingface.co/Lyy0725/pMF` (the `--pmf-hf-repo` flag).
 
 ## DINOv2 / DINOv3 — discriminative ViTs
-
-Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py)
 
 DINOv2:
 
@@ -47,16 +43,12 @@ Pass model names via `--disc-family openclip --disc-arch ViT-B-16 --disc-pretrai
 
 ## Pixio — discriminative ViTs
 
-Used by [`match_flux.py`](match_flux.py) and [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py).
-
 ```bash
 git clone https://github.com/facebookresearch/pixio pixio
 pip install -r pixio/requirements.txt
 ```
 
 ## Sana — efficient text-to-image transformer
-
-Used by [`match_large_dit.py`](match_large_dit.py).
 
 ```bash
 git clone https://github.com/NVlabs/Sana.git Sana
@@ -67,7 +59,7 @@ Sana weights are fetched from Hugging Face Hub (`Efficient-Large-Model/Sana_*`).
 
 ## FLUX.2-klein
 
-Used by [`match_flux.py`](match_flux.py). Loaded via `diffusers`:
+Loaded via `diffusers`:
 
 ```bash
 pip install --upgrade diffusers
