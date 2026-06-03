@@ -74,7 +74,7 @@ The underlying script is [`compute_rosetta_anchors.py`](compute_rosetta_anchors.
 
 ### `visualize.py` — unified HTML viewer
 
-[`visualize.py`](visualize.py) re-runs the generative model + the discriminative models on a sample of images and writes a self-contained single-page viewer of the top-activating image tiles per matched neuron. The page has a sidebar (search by `L<idx>` pMF layer, `N<neuron>`, or disc-model name; filter by min avg correlation and layer range) and a main panel where each example's source image plus per-model heatmap/overlay tiles sit in one grid row. It accepts two input modes:
+[`visualize.py`](visualize.py) re-runs the generative model + the discriminative models on a sample of images and writes a self-contained viewer of the top-activating image tiles per matched neuron. The page has a sidebar (search by `L<idx>` pMF layer, `N<neuron>`, or disc-model name; filter by min avg correlation and layer range) and a main panel where each example's source image plus per-model heatmap/overlay tiles sit in one grid row. It accepts two input modes:
 
 ```bash
 # Mode A — multi-model Rosetta anchors (intersection over N pairwise runs)
