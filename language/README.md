@@ -35,7 +35,7 @@ To use a different Pile mirror, override via env var:
 DATASET=/data/pile-full SPLIT=train bash match.sh A B
 ```
 
-This release matches only on Pile-shaped corpora (a directory containing `val.jsonl.zst` or similar). The matcher needs the per-subset prior statistics the Pile sampler computes, so plain HuggingFace text datasets aren't supported as a drop-in replacement.
+This code matches only on Pile-shaped corpora (a directory containing `val.jsonl.zst` or similar). The matcher needs the per-subset prior statistics the Pile sampler computes, so plain HuggingFace text datasets aren't supported as a drop-in replacement.
 
 ## Core concept
 
@@ -64,8 +64,8 @@ NPROC_PER_NODE=8 BATCH_SIZE=2 B_BLOCK=1 \
   bash match.sh EleutherAI/pythia-12b facebook/opt-13b Qwen/Qwen2.5-14B
 
 # quick approximation — only correlate each A-layer against its 6 nearest
-# B-layers by normalized depth. ~10x speedup at step 1; drops cross-depth
-# buddies. Good for first-pass exploration on big model pairs.
+# B-layers by normalized depth. ~10x speedup at step 1; drops far away cross-depth
+# buddies.
 NPROC_PER_NODE=8 DEPTH_NEIGHBORS=6 \
   bash match.sh EleutherAI/pythia-12b Qwen/Qwen2.5-14B
 ```
@@ -74,7 +74,7 @@ Knobs are passed as env vars and forwarded to whichever underlying pipeline gets
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `NUM_SAMPLES` | `10000000` | Total token budget over the Pile val corpus (~10M tokens — a reasonable default for meaningful correlations). Lower for a smoke test. |
+| `NUM_SAMPLES` | `10000000` | Total token budget over the Pile val corpus (~10M tokens — a reasonable default for meaningful correlations).|
 | `NPROC_PER_NODE` | `1` | GPU count for distributed steps (uses `torchrun`) |
 | `BATCH_SIZE` | `8` | Model forward batch size — reduce if OOM |
 | `B_BLOCK` | `2` | Correlation B-layer block size — reduce if OOM |
@@ -111,7 +111,7 @@ python visualize.py \
   --output outputs_cross/index.html
 ```
 
-The viewer is a single self-contained HTML page with a paginated sidebar (filter by avg correlation, anchor layer range, or search `L8`/`N859`/`8/859`) and a main panel showing per-anchor top-activating example contexts across all selected models side-by-side. The on-disk `rosetta_anchors.json` always contains every intersection anchor; `--num-anchors` only caps how many appear in the HTML for browseability.
+The viewer is a single self-contained HTML page with a sidebar (filter by avg correlation, anchor layer range, or search `L8`/`N859`/`8/859`) and a main panel showing per-anchor top-activating example contexts across all selected models side-by-side.
 
 The underlying pipelines are also directly invokable if you need finer control (e.g. resuming from a specific step) — see below.
 
@@ -192,7 +192,7 @@ If only one other model is provided, this delegates to `run_pipeline.sh`.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `NUM_SAMPLES` | `10000000` | Total token budget over the Pile val corpus (~10M tokens) |
+| `NUM_SAMPLES` | `10000000` | Total token budget over the Pile val corpus |
 | `START_STEP` | `1` (or `3` if single other model) | Step to resume from |
 | `TOP_K_ROSETTA` | `1000` | Viewer cap on how many top anchors the HTML renders (the JSON on disk always contains all of them) |
 | `OUTPUT_BASE` | `./outputs_anchor` | Output directory |
