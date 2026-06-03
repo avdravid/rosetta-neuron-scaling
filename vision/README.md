@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 Or for just this pipeline: `pip install -r vision/requirements.txt`. Needs `torch`, `torchvision`, `open_clip_torch`, `timm`, `diffusers`, `huggingface_hub`, `numpy`, `pillow`, `matplotlib`, `einops`, `omegaconf`.
 
-Several entry points additionally need external model repos (pMF, DINOv2/v3, PixIO, MAE, Sana) cloned alongside this tree — see [`third_party.md`](third_party.md).
+Several entry points additionally need external model repos (pMF, DINOv2/v3, Pixio, etc.) cloned alongside this tree — see [`third_party.md`](third_party.md).
 
 ## Core concept
 
@@ -21,7 +21,7 @@ For each model pair we:
 1. **Generate** a fixed batch of images with the generative model (pMF, FLUX, Sana, …) using a deterministic seed schedule.
 2. **Capture** MLP / FFN post-activation feature maps from both the generative and discriminative models on those same images.
 3. **Resample** both activation maps to a canonical patch grid (typically the generative model's native grid, e.g. 16 × 16 for pMF-B/16; 14 × 14 for OpenCLIP ViT-B/16).
-4. **Correlate** every generative-side channel with every discriminative-side channel across patches × images and save mutual top-K neighbors → `best_buddies.json`.
+4. **Correlate** every generative-side neuron with every discriminative-side neuron across patches × images and save mutual top-K neighbors → `best_buddies.json`.
 5. **Aggregate** best-buddies across multiple discriminative models to produce **Rosetta anchors**: generative-side neurons that have at least one mutual match in *every* run.
 
 The output of step 4 is a "matching run directory" (containing `best_buddies.json`, `run_metadata.json`, and per-layer correlation neighbor files). Step 5 consumes one such directory per discriminative model and outputs a `rosetta_anchors.json`.
@@ -34,9 +34,9 @@ The output of step 4 is a "matching run directory" (containing `best_buddies.jso
 
 | `--gen-family` | Generator | Discriminative towers |
 |---|---|---|
-| `pmf` | pMF one-step generator | DINOv2, DINOv3, OpenCLIP, MAE, PixIO, InternViT |
-| `flux` | FLUX.2-klein-4B | OpenCLIP, PixIO, InternViT, DINOv3 |
-| `sana` | Sana (large DiT) | OpenCLIP, PixIO |
+| `pmf` | pMF (DiT) | DINOv2, DINOv3, OpenCLIP, MAE, Pixio|
+| `flux` | FLUX.2-klein-4B (DiT)| OpenCLIP, PixIO, DINOv2, DINOv3 |
+| `sana` | Sana (DiT) | OpenCLIP, PixIO |
 
 ```bash
 # pMF + OpenCLIP, single GPU
@@ -64,7 +64,7 @@ bash scripts/example_match.sh
 
 ### `scripts/example_anchors.sh` — aggregate Rosetta anchors
 
-Consumes two or more matching-run directories and intersects their best-buddies on the generative side to produce ranked Rosetta anchors.
+Takes two or more matching-run directories and intersects their best-buddies on the generative side to produce ranked Rosetta anchors.
 
 ```bash
 bash scripts/example_anchors.sh
@@ -74,7 +74,7 @@ The underlying script is [`compute_rosetta_anchors.py`](compute_rosetta_anchors.
 
 ### `visualize.py` — unified HTML viewer
 
-[`visualize.py`](visualize.py) re-runs the generative model + the discriminative tower(s) on a sample of images and writes a self-contained, dark-theme single-page viewer of the top-activating image tiles per matched pMF neuron. The page has a searchable, filterable sidebar (search by `L<idx>` pMF layer, `N<neuron>`, or disc-model name; filter by min avg correlation and layer range; paginated) and a main panel where each example's source image plus per-model heatmap/overlay tiles sit in one responsive grid row that reflows to fit the window/zoom width. It accepts two input modes:
+[`visualize.py`](visualize.py) re-runs the generative model + the discriminative tower(s) on a sample of images and writes a self-contained single-page viewer of the top-activating image tiles per matched pMF neuron. The page has a sidebar (search by `L<idx>` pMF layer, `N<neuron>`, or disc-model name; filter by min avg correlation and layer range) and a main panel where each example's source image plus per-model heatmap/overlay tiles sit in one grid row. It accepts two input modes:
 
 ```bash
 # Mode A — multi-model Rosetta anchors (intersection over N pairwise runs)
@@ -92,7 +92,7 @@ python visualize.py \
     --num-anchors 24 --top-images 4
 ```
 
-In Mode B, each best-buddy pair is treated as a degenerate one-match anchor and rendered with the same HTML template. [`scripts/example_visualize_anchors.sh`](scripts/example_visualize_anchors.sh) demonstrates Mode A.
+An example visualization scripts is provided: [`scripts/example_visualize_anchors.sh`](scripts/example_visualize_anchors.sh).
 
 ## Analysis utilities
 
