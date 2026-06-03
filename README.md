@@ -15,10 +15,10 @@ Official code release for **"Neuron Populations Exhibit Divergent Selectivity wi
 
 ---
 
-Rosetta Neurons are individual neurons that fire on the same inputs across independently-trained models. This repo contains the pipelines for discovering and visualizing them across scale in two modalities:
+Rosetta Neurons are neurons that fire on the same inputs across independently trained models. This repo contains the pipelines for discovering and visualizing them across scale in two modalities:
 
-- **[`language/`](language/)** — find Rosetta neurons across language models (Pythia, GPT-2, OPT, Qwen, …). Aligns activations across mismatched tokenizers via UTF-8 byte spans; computes mutual top-K best-buddy pairs of MLP units; intersects across multiple models to produce "Rosetta anchors".
-- **[`vision/`](vision/)** — find Rosetta neurons across vision models (DINOv2/v3, OpenCLIP, diffusion, …). Aligns activations on a canonical spatial patch grid; produces best-buddies and Rosetta anchors over generative ↔ discriminative model pairs.
+- **[`language/`](language/)** — find Rosetta Neurons across language models (Pythia, GPT-2, OPT, Qwen, …). Aligns activations across mismatched tokenizers via UTF-8 byte spans; computes mutual top-K best-buddy pairs of MLP units; intersects across multiple models to produce "Rosetta anchors".
+- **[`vision/`](vision/)** — find Rosetta Neurons across vision models (DINOv2/v3, OpenCLIP, diffusion, …). Aligns activations on a canonical spatial patch grid; produces best-buddies and Rosetta anchors over generative ↔ discriminative model pairs.
 - **[`common/`](common/)** — common functions used by both pipelines.
 
 ## Release checklist
@@ -26,7 +26,7 @@ Rosetta Neurons are individual neurons that fire on the same inputs across indep
 - [x] Release Language Matching Code
 - [x] Release Vision Matching Code
 - [x] Release Visualization Code
-- [ ] Release Precomputed Rosetta Neurons
+- [ ] Release Precomputed Rosetta Neurons (ETA June 8)
 
 ## Install
 
@@ -34,7 +34,7 @@ Rosetta Neurons are individual neurons that fire on the same inputs across indep
 pip install -r requirements.txt
 ```
 
-The top-level `requirements.txt` covers both pipelines. If you only need one modality, the per-modality `language/requirements.txt` and `vision/requirements.txt` are leaner. The vision pipeline additionally depends on several external model repos — see [`vision/third_party.md`](vision/third_party.md).
+The top-level `requirements.txt` covers both pipelines. If you only need one modality, the per-modality `language/requirements.txt` and `vision/requirements.txt` are more compact. The vision pipeline additionally depends on several external model repos — see [`vision/third_party.md`](vision/third_party.md).
 
 ## Quickstart
 
@@ -52,7 +52,7 @@ cd language && NPROC_PER_NODE=8 bash match.sh \
 cd vision && bash scripts/example_match.sh
 ```
 
-See each subdir's README for the full pipeline (matching → best-buddies → Rosetta anchors → visualization), CLI flags, and environment-variable knobs. Both pipelines produce a single self-contained `index.html` you can open in any browser.
+See each subdir's README for the full pipeline (matching → best-buddies → Rosetta anchors → visualization), CLI flags, and environment-variable knobs. Both pipelines produce a single self-contained `index.html` visualization you can open in any browser.
 
 ## Repo layout
 
