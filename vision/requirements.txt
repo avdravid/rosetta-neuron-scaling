@@ -1,0 +1,16 @@
+# Vision-pipeline-specific dependencies. See the top-level requirements.txt
+# for shared deps. Several entry points additionally need external model
+# repos (pMF, dinov2, pixio, mae, Sana) cloned alongside this tree — see
+# third_party.md.
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+tqdm>=4.65.0
+matplotlib>=3.7.0
+pillow>=10.0.0
+einops>=0.7.0
+open_clip_torch>=2.24.0
+timm>=0.9.0
+diffusers>=0.27.0
+huggingface_hub>=0.20.0
+omegaconf>=2.3.0

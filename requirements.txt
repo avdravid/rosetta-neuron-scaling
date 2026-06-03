@@ -1,0 +1,21 @@
+# Core dependencies shared by both the language and vision pipelines.
+# Modality-specific overlays live in language/requirements.txt and
+# vision/requirements.txt; install those as needed.
+torch>=2.0.0
+numpy>=1.24.0
+tqdm>=4.65.0
+matplotlib>=3.7.0
+einops>=0.7.0
+
+# Language pipeline
+transformers>=4.30.0
+datasets>=2.14.0
+sentencepiece>=0.1.99
+
+# Vision pipeline
+torchvision>=0.15.0
+open_clip_torch>=2.24.0
+timm>=0.9.0
+diffusers>=0.27.0
+huggingface_hub>=0.20.0
+pillow>=10.0.0
