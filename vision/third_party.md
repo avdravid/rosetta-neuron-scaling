@@ -45,12 +45,12 @@ pip install open_clip_torch
 
 Pass model names via `--disc-family openclip --disc-arch ViT-B-16 --disc-pretrained openai` (or any other supported weights tag).
 
-## PixIO — vision tower
+## Pixio — discriminative ViTs
 
 Used by [`match_flux.py`](match_flux.py) and [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py).
 
 ```bash
-git clone [https://github.com/<pixio-upstream>/pixio.git](https://github.com/facebookresearch/pixio) pixio
+git clone https://github.com/facebookresearch/pixio pixio
 pip install -r pixio/requirements.txt
 ```
 
