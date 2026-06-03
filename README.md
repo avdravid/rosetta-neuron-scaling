@@ -69,11 +69,14 @@ rosetta-neurons/
 If you found this repository useful please consider starring ⭐ and citing:
 
 ```bibtex
-@article{dravid2026neuron,
-  title  = {Neuron Populations Exhibit Divergent Selectivity with Scale},
-  author = {Dravid, Amil and Bahri, Yasaman and Efros, Alexei A. and Gandelsman, Yossi},
-  year   = {2026},
-  note   = {arXiv:TODO}
+@misc{dravid2026neuronpopulationsexhibitdivergent,
+      title={Neuron Populations Exhibit Divergent Selectivity with Scale}, 
+      author={Amil Dravid and Yasaman Bahri and Alexei A. Efros and Yossi Gandelsman},
+      year={2026},
+      eprint={2606.03990},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2606.03990}, 
 }
 ```
 
