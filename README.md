@@ -21,6 +21,13 @@ Rosetta neurons are individual neurons that fire on the same inputs across indep
 - **[`vision/`](vision/)** — find Rosetta neurons across vision models (DINOv2/v3, OpenCLIP, diffusion, …). Aligns activations on a canonical spatial patch grid; produces best-buddies and Rosetta anchors over generative ↔ discriminative model pairs.
 - **[`common/`](common/)** — common functions used by both pipelines.
 
+## Release checklist
+
+- [x] Release Language Matching Code
+- [x] Release Vision Matching Code
+- [x] Release Visualization Code
+- [ ] Release Precomputed Rosetta Neurons
+
 ## Install
 
 ```bash
