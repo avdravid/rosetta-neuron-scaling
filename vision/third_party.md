@@ -11,6 +11,17 @@ pip install -r pMF/requirements.txt
 
 Pretrained checkpoints are pulled automatically from `huggingface.co/Lyy0725/pMF` (the `--pmf-hf-repo` flag).
 
+## OpenCLIP — discriminative ViTs
+
+No external clone needed; pulled via the `open_clip_torch` package:
+
+```bash
+pip install open_clip_torch
+```
+
+Pass model names via `--disc-family openclip --disc-arch ViT-B-16 --disc-pretrained openai` (or any other supported weights tag).
+
+
 ## DINOv2 / DINOv3 — discriminative ViTs
 
 DINOv2:
