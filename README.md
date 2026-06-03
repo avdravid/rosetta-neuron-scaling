@@ -26,7 +26,7 @@ Rosetta Neurons are neurons that fire on the same inputs across independently tr
 - [x] Release Language Matching Code
 - [x] Release Vision Matching Code
 - [x] Release Visualization Code
-- [ ] Release Precomputed Rosetta Neurons (ETA June 8)
+- [ ] Release Example Precomputed Rosetta Neurons (ETA June 8)
 
 ## Install
 
