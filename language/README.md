@@ -67,7 +67,7 @@ NPROC_PER_NODE=8 BATCH_SIZE=2 B_BLOCK=1 \
 # B-layers by normalized depth. ~10x speedup at step 1; drops cross-depth
 # buddies. Good for first-pass exploration on big model pairs.
 NPROC_PER_NODE=8 DEPTH_NEIGHBORS=6 \
-  bash match.sh facebook/opt-30b Qwen/Qwen2.5-32B
+  bash match.sh EleutherAI/pythia-12b Qwen/Qwen2.5-14B
 ```
 
 Knobs are passed as env vars and forwarded to whichever underlying pipeline gets selected:
