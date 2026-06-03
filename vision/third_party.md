@@ -15,7 +15,7 @@ Pretrained checkpoints are pulled automatically from `huggingface.co/Lyy0725/pMF
 
 ## DINOv2 / DINOv3 — discriminative ViTs
 
-Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py) and [`match_flux.py`](match_flux.py) (both DINOv3).
+Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py) and [`match_flux.py`](match_flux.py).
 
 DINOv3 can be loaded either:
 - directly from Hugging Face Transformers (default — no external repo needed): `--disc-arch facebook/dinov3-vitb16-pretrain-lvd1689m`, or
@@ -50,26 +50,8 @@ Pass model names via `--disc-family openclip --disc-arch ViT-B-16 --disc-pretrai
 Used by [`match_flux.py`](match_flux.py) and [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py).
 
 ```bash
-git clone https://github.com/<pixio-upstream>/pixio.git pixio
+git clone [https://github.com/<pixio-upstream>/pixio.git](https://github.com/facebookresearch/pixio) pixio
 pip install -r pixio/requirements.txt
-```
-
-(Substitute the actual PixIO upstream URL — fill in before release.)
-
-## InternViT — vision tower
-
-Used by [`match_flux.py`](match_flux.py).
-
-InternViT can typically be loaded directly via Hugging Face Transformers (`AutoModel.from_pretrained("OpenGVLab/InternViT-...")`). No external clone needed.
-
-## MAE — masked autoencoder
-
-Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py) (via `--disc-family mae`).
-
-```bash
-git clone https://github.com/facebookresearch/mae.git mae
-# weights — e.g. MAE-base ImageNet pretrain:
-wget https://dl.fbaipublicfiles.com/mae/pretrain/mae_pretrain_vit_base.pth
 ```
 
 ## Sana — efficient text-to-image transformer
