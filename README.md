@@ -5,7 +5,7 @@
 Amil Dravid<sup>1</sup>, Yasaman Bahri<sup>1</sup>, Alexei A. Efros<sup>1</sup>, Yossi Gandelsman<sup>2</sup><br>
 <sup>1</sup>UC Berkeley &nbsp;&nbsp; <sup>2</sup>TTIC
 
-Official code release for **"Neuron Populations Exhibit Divergent Selectivity with Scale"**.
+Official code release for **"Neuron Populations Exhibit Divergent Selectivity with Scale"**
 
 <p align="center">
   <img src="./assets/teaser.png" alt="teaser" width="800"/>
@@ -15,7 +15,7 @@ Official code release for **"Neuron Populations Exhibit Divergent Selectivity wi
 
 ---
 
-Rosetta neurons are individual neurons that fire on the same inputs across independently-trained models. This repo contains the pipelines for discovering them in two modalities:
+Rosetta Neurons are individual neurons that fire on the same inputs across independently-trained models. This repo contains the pipelines for discovering and visualizing them across scale in two modalities:
 
 - **[`language/`](language/)** — find Rosetta neurons across language models (Pythia, GPT-2, OPT, Qwen, …). Aligns activations across mismatched tokenizers via UTF-8 byte spans; computes mutual top-K best-buddy pairs of MLP units; intersects across multiple models to produce "Rosetta anchors".
 - **[`vision/`](vision/)** — find Rosetta neurons across vision models (DINOv2/v3, OpenCLIP, diffusion, …). Aligns activations on a canonical spatial patch grid; produces best-buddies and Rosetta anchors over generative ↔ discriminative model pairs.
