@@ -24,19 +24,19 @@ For each model pair we:
 4. **Correlate** every generative-side neuron with every discriminative-side neuron across patches × images and save mutual top-K neighbors → `best_buddies.json`.
 5. **Aggregate** best-buddies across multiple discriminative models to produce **Rosetta anchors**: generative-side neurons that have at least one mutual match in *every* run.
 
-The output of step 4 is a "matching run directory" (containing `best_buddies.json`, `run_metadata.json`, and per-layer correlation neighbor files). Step 5 consumes one such directory per discriminative model and outputs a `rosetta_anchors.json`.
+The output of step 4 is a "matching run directory" (containing `best_buddies.json`, `run_metadata.json`, and per-layer correlation neighbor files). Step 5 takes one such directory per discriminative model and outputs a `rosetta_anchors.json`.
 
 ## Pipeline scripts
 
 ### `match.py` — unified entry point
 
-[`match.py`](match.py) is a thin dispatcher that forwards to the right family-specific matching script based on `--gen-family`:
+[`match.py`](match.py) is a dispatcher that forwards to the right family-specific matching script based on `--gen-family`:
 
 | `--gen-family` | Generator | Discriminative towers |
 |---|---|---|
-| `pmf` | pMF (DiT) | DINOv2, DINOv3, OpenCLIP, MAE, Pixio|
-| `flux` | FLUX.2-klein-4B (DiT)| OpenCLIP, PixIO, DINOv2, DINOv3 |
-| `sana` | Sana (DiT) | OpenCLIP, PixIO |
+| `pmf` | pMF (DiT) | DINOv2, DINOv3, OpenCLIP, Pixio|
+| `sana` | Sana (DiT) | OpenCLIP, Pixio |
+| `flux` | FLUX.2-klein-4B (DiT)| DINOv2, DINOv3, OpenCLIP, Pixio|
 
 ```bash
 # pMF + OpenCLIP, single GPU
@@ -56,7 +56,7 @@ To see the full CLI for a given family, run `python match.py --gen-family <famil
 
 ### `scripts/example_match.sh` — worked example
 
-Generates images with pMF-B/16 and matches its MLP units against an OpenCLIP ViT-B/16 vision tower. Writes neighbors + best-buddies to `./test_pmf_openclip/`.
+Generates images with pMF-B/16 and matches its MLP units against OpenCLIP ViT-B/16. Writes neighbors + best-buddies to `./test_pmf_openclip/`.
 
 ```bash
 bash scripts/example_match.sh
@@ -74,7 +74,7 @@ The underlying script is [`compute_rosetta_anchors.py`](compute_rosetta_anchors.
 
 ### `visualize.py` — unified HTML viewer
 
-[`visualize.py`](visualize.py) re-runs the generative model + the discriminative tower(s) on a sample of images and writes a self-contained single-page viewer of the top-activating image tiles per matched pMF neuron. The page has a sidebar (search by `L<idx>` pMF layer, `N<neuron>`, or disc-model name; filter by min avg correlation and layer range) and a main panel where each example's source image plus per-model heatmap/overlay tiles sit in one grid row. It accepts two input modes:
+[`visualize.py`](visualize.py) re-runs the generative model + the discriminative models on a sample of images and writes a self-contained single-page viewer of the top-activating image tiles per matched neuron. The page has a sidebar (search by `L<idx>` pMF layer, `N<neuron>`, or disc-model name; filter by min avg correlation and layer range) and a main panel where each example's source image plus per-model heatmap/overlay tiles sit in one grid row. It accepts two input modes:
 
 ```bash
 # Mode A — multi-model Rosetta anchors (intersection over N pairwise runs)
@@ -92,7 +92,7 @@ python visualize.py \
     --num-anchors 24 --top-images 4
 ```
 
-An example visualization scripts is provided: [`scripts/example_visualize_anchors.sh`](scripts/example_visualize_anchors.sh).
+An example visualization script is provided: [`scripts/example_visualize_anchors.sh`](scripts/example_visualize_anchors.sh).
 
 ## Analysis utilities
 
