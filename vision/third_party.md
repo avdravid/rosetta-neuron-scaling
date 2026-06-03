@@ -42,16 +42,6 @@ mkdir -p dinov3_checkpoints
 wget -P dinov3_checkpoints https://dl.fbaipublicfiles.com/dinov3/dinov3_vitb16/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth
 ```
 
-## OpenCLIP — discriminative ViTs
-
-No external clone needed; pulled via the `open_clip_torch` package:
-
-```bash
-pip install open_clip_torch
-```
-
-Pass model names via `--disc-family openclip --disc-arch ViT-B-16 --disc-pretrained openai` (or any other supported weights tag).
-
 ## Pixio — discriminative ViTs
 
 ```bash
