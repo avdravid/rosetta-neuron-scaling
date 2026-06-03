@@ -19,7 +19,7 @@ Or for just this pipeline: `pip install -r language/requirements.txt`. Needs `to
 The default `DATASET` is the **Pile validation set**, expected at the top of your clone of this repo. Download it from [this Google Drive folder](https://drive.google.com/drive/folders/1klmBdOi5hh5C508vbMFmpizqHgUS3zmR?usp=sharing) and place the file so your tree looks like:
 
 ```
-rosetta-neurons-release/        <- wherever you cloned this repo
+rosetta-neuron-scaling/        <- wherever you cloned this repo
 ├── language/
 ├── vision/
 ├── common/
@@ -27,7 +27,7 @@ rosetta-neurons-release/        <- wherever you cloned this repo
     └── val.jsonl.zst           <- ~450 MB
 ```
 
-The shell scripts auto-discover this via a path computed from their own runtime location (`$REPO_ROOT/../pile`), so this works no matter where you clone the repo — `~/code/rosetta-neurons-release/`, `/opt/rosetta-neurons-release/`, anywhere.
+The shell scripts auto-discover this via a path computed from their own runtime location (`$REPO_ROOT/../pile`), so this works no matter where you clone the repo — `~/code/rosetta-neurons-scaling/`, `/opt/rosetta-neuron-scaling/`, anywhere.
 
 To use a different Pile mirror, override via env var:
 
@@ -246,6 +246,5 @@ MLP post-activation hook detection is automatic for:
 
 - **Pythia / GPT-NeoX**: `gpt_neox.layers.{i}.mlp.dense_4h_to_h`
 - **GPT-2**: `transformer.h.{i}.mlp.c_proj`
-- **LLaMA**: `model.layers.{i}.mlp.down_proj`
 - **OPT**: `model.decoder.layers.{i}.fc2`
 - **Qwen**: `model.layers.{i}.mlp.down_proj`
