@@ -23,7 +23,7 @@ This document explains exactly what `match_lm.py` (and its core implementation i
 - Distributed sampling: `--shard_pile_subsets`
 - Cache controls: `--tokenize_batch`, `--token_cache`
 - Output controls: `--save_neighbors`, `--top_k`, `--only_diagonal`
-
+in
 **Outputs (in `--save_dir`)**
 - `stats_A_layer{i}.pt`, `stats_B_layer{j}.pt`: per-layer mean/std
 - `nn_A_layer{i}_vs_B_layer{j}_top{K}.pt`: top-K neighbors for A neurons
@@ -65,19 +65,6 @@ Canonical spans are defined by **shared token boundaries** between the two token
 4. The canonical spans are the byte ranges between consecutive shared boundaries.
 
 Each canonical span becomes a single sample for correlation after pooling within the span.
-
-**Example (boundary intersection):**
-
-Text: `claud e co de` (byte positions are simplified for illustration)
-
-- Model A tokens: `cla` `ud` `e` `co` `de`
-- Model B tokens: `clau` `d` `e` `co` `d` `e`
-
-Shared boundaries yield canonical spans:
-- `claud` (A: `cla`+`ud`, B: `clau`+`d`)
-- `e` (A: `e`, B: `e`)
-- `co` (A: `co`, B: `co`)
-- `de` (A: `de`, B: `d`+`e`)
 
 ## Pass 1: Stats (Canonical Spans)
 
