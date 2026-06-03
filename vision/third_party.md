@@ -17,6 +17,13 @@ Pretrained checkpoints are pulled automatically from `huggingface.co/Lyy0725/pMF
 
 Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py) and [`match_flux.py`](match_flux.py).
 
+DINOv2:
+
+```bash
+git clone https://github.com/facebookresearch/dinov2.git dinov2
+pip install -r dinov2/requirements.txt
+```
+
 DINOv3 can be loaded either:
 - directly from Hugging Face Transformers (default — no external repo needed): `--disc-arch facebook/dinov3-vitb16-pretrain-lvd1689m`, or
 - via the official `dinov3` repo through `torch.hub`:
@@ -26,13 +33,6 @@ git clone https://github.com/facebookresearch/dinov3.git dinov3
 # weights:
 mkdir -p dinov3_checkpoints
 wget -P dinov3_checkpoints https://dl.fbaipublicfiles.com/dinov3/dinov3_vitb16/dinov3_vitb16_pretrain_lvd1689m-73cec8be.pth
-```
-
-DINOv2 (legacy):
-
-```bash
-git clone https://github.com/facebookresearch/dinov2.git dinov2
-pip install -r dinov2/requirements.txt
 ```
 
 ## OpenCLIP — discriminative ViTs
