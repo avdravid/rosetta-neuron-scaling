@@ -125,8 +125,8 @@ bash scripts/run_pipeline.sh MODEL1 MODEL2 NUM_SAMPLES [START_STEP]
 
 | Arg | Default | Description |
 |-----|---------|-------------|
-| `MODEL1` | `EleutherAI/pythia-1b` | First model (HuggingFace ID or local path) |
-| `MODEL2` | `unsloth/Llama-3.2-1B` | Second model |
+| `MODEL1` | `EleutherAI/pythia-1.4b` | First model (HuggingFace ID or local path) |
+| `MODEL2` | `facebook/opt-1.3b` | Second model |
 | `NUM_SAMPLES` | `10000000` | Total token budget over the Pile val corpus (~10M tokens) |
 | `START_STEP` | `4` | Step to resume from (1–6) |
 
@@ -157,10 +157,10 @@ bash scripts/run_pipeline.sh MODEL1 MODEL2 NUM_SAMPLES [START_STEP]
 | `SPAN_POOL` | `mean` | Span pooling: `mean`, `max`, `median` |
 
 **Examples:**
-
+EleutherAI/pythia-1.4b facebook/opt-1.3b
 ```bash
 # Basic two-model comparison
-bash scripts/run_pipeline.sh EleutherAI/pythia-1b unsloth/Llama-3.2-1B 10000
+bash scripts/run_pipeline.sh EleutherAI/pythia-1.4b facebook/opt-1.3b 10000
 
 # Multi-GPU
 NPROC_PER_NODE=4 bash scripts/run_pipeline.sh MODEL1 MODEL2 50000
