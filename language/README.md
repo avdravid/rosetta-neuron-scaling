@@ -211,7 +211,7 @@ NPROC_PER_NODE=4 OUTPUT_BASE=./my_run \
 
 ### Worked examples
 
-[`scripts/example_pythia160m_gpt2_opt125m.sh`](scripts/example_pythia160m_gpt2_opt125m.sh) (multi-model anchors: Pythia-160M anchor vs GPT-2 and OPT-125M) and [`scripts/example_pythia160m_gpt2.sh`](scripts/example_pythia160m_gpt2.sh) (pairwise Pythia-160M vs GPT-2) bake in model sets, GPU counts, and knobs as small-model starting points you can copy and modify.
+[`scripts/example_pythia160m_gpt2_opt125m.sh`](scripts/example_pythia160m_gpt2_opt125m.sh) (multi-model anchors: Pythia-160M anchor vs GPT-2 and OPT-125M) and [`scripts/example_pythia160m_gpt2.sh`](scripts/example_pythia160m_gpt2.sh) (pairwise Pythia-160M vs GPT-2) These are example model sets, GPU counts, and knobs as starting points you can copy and modify.
 
 ## Architecture
 
