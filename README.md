@@ -1,6 +1,6 @@
 # **Neuron Populations Exhibit Divergent Selectivity with Scale**
 
-[[Paper](#)] [[Project Page](https://avdravid.github.io/rosetta-neuron-scaling/)]
+[[Paper](http://arxiv.org/abs/2606.03990)] [[Project Page](https://avdravid.github.io/rosetta-neuron-scaling/)]
 
 Amil Dravid<sup>1</sup>, Yasaman Bahri<sup>1</sup>, Alexei A. Efros<sup>1</sup>, Yossi Gandelsman<sup>2</sup><br>
 <sup>1</sup>UC Berkeley &nbsp;&nbsp; <sup>2</sup>TTIC
