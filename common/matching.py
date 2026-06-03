@@ -1,9 +1,9 @@
-"""Schema-agnostic primitives shared by the language and vision matching pipelines.
+"""Functions shared by the language and vision matching pipelines.
 
 Both pipelines reduce their per-modality features (byte-aligned token spans for
 language, spatial patch grids for vision) to a 2D tensor of activations, then
 compute a Pearson correlation matrix between neurons of model A and model B and
-find mutual top-K neighbors. Those two steps are what lives here.
+find mutual top-K neighbors.
 """
 
 from __future__ import annotations
