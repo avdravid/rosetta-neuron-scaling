@@ -15,7 +15,7 @@ Pretrained checkpoints are pulled automatically from `huggingface.co/Lyy0725/pMF
 
 ## DINOv2 / DINOv3 — discriminative ViTs
 
-Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py) and [`match_flux.py`](match_flux.py).
+Used by [`match_pmf_vit_multigpu.py`](match_pmf_vit_multigpu.py)
 
 DINOv2:
 
