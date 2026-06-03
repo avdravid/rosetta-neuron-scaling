@@ -40,12 +40,12 @@ The top-level `requirements.txt` covers both pipelines. If you only need one mod
 
 ```bash
 # Language: pairwise Rosetta match between two LMs (auto-uses Pile val at ./pile/)
-cd language && NPROC_PER_NODE=8 bash match.sh EleutherAI/pythia-1b unsloth/Llama-3.2-1B
+cd language && NPROC_PER_NODE=8 bash match.sh EleutherAI/pythia-160m gpt2
 # → open ./outputs_cross/index.html
 
 # Language: multi-model Rosetta anchors (first model is the anchor)
 cd language && NPROC_PER_NODE=8 bash match.sh \
-  EleutherAI/pythia-6.9b facebook/opt-6.7b Qwen/Qwen2.5-7B
+  EleutherAI/pythia-160m gpt2 facebook/opt-125m
 # → open ./outputs_anchor/index.html
 
 # Vision: pairwise match between a generative model (pMF) and a discriminative ViT (OpenCLIP)
