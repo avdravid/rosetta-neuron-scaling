@@ -59,8 +59,8 @@ See each subdir's README for the full pipeline (matching → best-buddies → Ro
 ```
 rosetta-neurons/
 ├── common/      # shared correlation + mutual-top-K helpers
-├── language/    # LM pipeline (Pythia/OPT/Qwen/Llama, byte-aligned spans)
-├── vision/      # vision pipeline (pMF/Flux/Sana/DINO/CLIP/…)
+├── language/    # LM pipeline 
+├── vision/      # Vision pipeline
 └── requirements.txt
 ```
 
