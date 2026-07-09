@@ -1,0 +1,13 @@
+{
+  "anchor": "EleutherAI/pythia-160m",
+  "models": [
+    "gpt2",
+    "facebook/opt-125m"
+  ],
+  "count": 1316,
+  "mean": 0.496698907081117,
+  "std": 0.15462743989253758,
+  "min": 0.16015625,
+  "max": 0.958984375,
+  "median": 0.470703125
+}
