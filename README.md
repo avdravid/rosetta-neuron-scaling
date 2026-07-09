@@ -26,7 +26,7 @@ Rosetta Neurons are neurons that fire on the same inputs across independently tr
 - [x] Release Language Matching Code
 - [x] Release Vision Matching Code
 - [x] Release Visualization Code
-- [ ] Release Example Precomputed Rosetta Neurons (ETA June 8)
+- [x] Release Example Precomputed Rosetta Neurons
 
 ## Install
 
@@ -37,6 +37,9 @@ pip install -r requirements.txt
 The top-level `requirements.txt` covers both pipelines. If you only need one modality, the per-modality `language/requirements.txt` and `vision/requirements.txt` are more compact. The vision pipeline additionally depends on several external model repos — see [`vision/third_party.md`](vision/third_party.md).
 
 ## Quickstart
+The default `DATASET` for the language models is the **Pile validation set**, expected at the top of your clone of this repo. Download it from [this Google Drive folder](https://drive.google.com/drive/folders/1klmBdOi5hh5C508vbMFmpizqHgUS3zmR?usp=sharing). 
+
+We provide example precomputed Rosetta Neurons in ```example_neurons``` and an example visualization in ```example_viz.html```
 
 ```bash
 # Language: pairwise Rosetta match between two LMs (auto-uses Pile val at ./pile/)
