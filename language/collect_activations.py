@@ -55,16 +55,20 @@ def dist_init_if_needed() -> Tuple[int, int, int, str]:
     """
     if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
         backend = "nccl" if torch.cuda.is_available() else "gloo"
-        if not dist.is_initialized():
-            dist.init_process_group(backend=backend)
-        rank = dist.get_rank()
-        world = dist.get_world_size()
         local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+        # Bind the device before init_process_group so NCCL does not guess it
+        # from the global rank (which can deadlock the first collective).
+        device_id = None
         if torch.cuda.is_available():
             torch.cuda.set_device(local_rank)
             device = f"cuda:{local_rank}"
+            device_id = torch.device("cuda", local_rank)
         else:
             device = "cpu"
+        if not dist.is_initialized():
+            dist.init_process_group(backend=backend, device_id=device_id)
+        rank = dist.get_rank()
+        world = dist.get_world_size()
         return rank, world, local_rank, device
     return 0, 1, 0, "cuda" if torch.cuda.is_available() else "cpu"
 

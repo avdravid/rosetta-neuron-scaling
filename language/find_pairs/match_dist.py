@@ -24,17 +24,21 @@ def init_distributed_from_env():
     Returns (distributed, rank, world_size, local_rank, device).
     """
     if "RANK" in os.environ and "WORLD_SIZE" in os.environ:
-        # Use 2-hour timeout to handle imbalanced block distribution across ranks
+        # Bind this rank to its GPU *before* init_process_group so NCCL does not
+        # have to guess the device from the global rank (which can deadlock the
+        # first collective). Passing device_id also enables eager NCCL init.
+        local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+        torch.cuda.set_device(local_rank)
+        device = torch.device("cuda", local_rank)
+        # Use 4-hour timeout to handle imbalanced block distribution across ranks
         dist.init_process_group(
             backend="nccl",
             init_method="env://",
             timeout=datetime.timedelta(hours=4),
+            device_id=device,
         )
         rank = dist.get_rank()
         world_size = dist.get_world_size()
-        local_rank = int(os.environ.get("LOCAL_RANK", "0"))
-        torch.cuda.set_device(local_rank)
-        device = torch.device("cuda", local_rank)
         return True, rank, world_size, local_rank, device
     else:
         return False, 0, 1, 0, None
