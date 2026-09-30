@@ -1,4 +1,4 @@
-# **Neuron Populations Exhibit Divergent Selectivity with Scale**
+# **Neuron Populations Exhibit Divergent Selectivity with Scale (NeurIPS 2026)**
 
 [[Paper](http://arxiv.org/abs/2606.03990)] [[Project Page](https://avdravid.github.io/rosetta-neuron-scaling/)]
 
